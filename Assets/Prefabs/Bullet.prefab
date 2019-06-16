@@ -201,6 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5d1d445b104ce4bb3563b64081abbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 10
+  velocity: 50
   effectsPrefab: {fileID: 0}
   line: {fileID: 7328189034495338805}
