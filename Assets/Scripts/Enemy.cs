@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     private int health = 0;
     private Slider healthSlider;
-    private Renderer healthRenderer;
+    private Renderer r;
 
     // Start is called before the first frame update
     void Start()
@@ -55,22 +55,28 @@ public class Enemy : MonoBehaviour
         // Spawn HealthBar UI into parent and get reference to Slider component on clone
         GameObject clone = Instantiate(healthBarUIPrefab, healthBarParent);
         healthSlider = clone.GetComponent<Slider>();
-        healthRenderer = clone.GetComponent<Renderer>();
+        r = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (healthRenderer.isVisible)
+        if (r.isVisible)
         {
+            healthSlider.gameObject.SetActive(true);
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(healthBarPosition.position); // + offset
             healthSlider.transform.position = screenPosition;
+        }
+        else
+        {
+            healthSlider.gameObject.SetActive(false);
         }
     }
 
     private void OnDestroy()
     {
-        Vector3 pos = transform.position;
+        //Vector3 pos = transform.position;
+        Destroy(healthSlider.gameObject);
     }
 
     public void Damage(int damageAmount)
